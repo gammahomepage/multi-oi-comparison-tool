@@ -1515,13 +1515,13 @@
                     return Math.abs(call1[index]) >= Math.abs(call2[index]) ? `${formatNumber(price)}` : ``;
                 });
                 const textCall2 = allPrices.map((price, index) => {
-                    return Math.abs(call1[index]) < Math.abs(call2[index]) ? `${formatNumber(price)}` : ``;
+                    return Math.abs(call1[index]) <= Math.abs(call2[index]) ? `${formatNumber(price)}` : ``;
                 });
                 const textPut1 = allPrices.map((price, index) => {
                     return Math.abs(put1[index]) >= Math.abs(put2[index]) ? `${formatNumber(price)}` : ``;
                 });
                 const textPut2 = allPrices.map((price, index) => {
-                    return Math.abs(put1[index]) < Math.abs(put2[index]) ? `${formatNumber(price)}` : ``;
+                    return Math.abs(put1[index]) <= Math.abs(put2[index]) ? `${formatNumber(price)}` : ``;
                 });
 
                 // 準備要顯示的traces - 分別顯示 Call 和 Put
