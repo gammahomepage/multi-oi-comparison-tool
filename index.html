@@ -1511,6 +1511,19 @@
                 const legendName1 = hasDataset1 && dataset1.fileName ? stripFileExtension(dataset1.fileName) : key1Label;
                 const legendName2 = hasDataset2 && dataset2.fileName ? stripFileExtension(dataset2.fileName) : key2Label;
 
+                const textCall1 = allPrices.map((price, index) => {
+                    return Math.abs(formatSignedMillion(call1[index])) > Math.abs(formatSignedMillion(call2[index])) ? `${formatNumber(price)}` : ``;
+                });
+                const textCall2 = allPrices.map((price, index) => {
+                    return Math.abs(formatSignedMillion(call1[index])) < Math.abs(formatSignedMillion(call2[index])) ? `${formatNumber(price)}` : ``;
+                });
+                const textPut1 = allPrices.map((price, index) => {
+                    return Math.abs(formatSignedMillion(-put1[index])) > Math.abs(formatSignedMillion(-put2[index])) ? `${formatNumber(price)}` : ``;
+                });
+                const textPut2 = allPrices.map((price, index) => {
+                    return Math.abs(formatSignedMillion(-put1[index])) < Math.abs(formatSignedMillion(-put2[index])) ? `${formatNumber(price)}` : ``;
+                });
+
                 // 準備要顯示的traces - 分別顯示 Call 和 Put
                 const traces = [];
 
@@ -1527,6 +1540,7 @@
                         },
                         customdata: hoverPut2,
                         hovertemplate: "%{customdata}<extra></extra>",
+                        text: textPut2,
                         name: `${legendName2} Put`,
                     });
                 }
@@ -1544,6 +1558,7 @@
                         },
                         customdata: hoverCall2,
                         hovertemplate: "%{customdata}<extra></extra>",
+                        text: textCall2,
                         name: `${legendName2} Call`,
                     });
                 }
@@ -1561,6 +1576,7 @@
                         },
                         customdata: hoverPut1,
                         hovertemplate: "%{customdata}<extra></extra>",
+                        text: textPut1,
                         name: `${legendName1} Put`,
                     };
 
@@ -1594,6 +1610,7 @@
                         },
                         customdata: hoverCall1,
                         hovertemplate: "%{customdata}<extra></extra>",
+                        text: textCall1,
                         name: `${legendName1} Call`,
                     };
 
